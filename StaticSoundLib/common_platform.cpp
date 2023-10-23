@@ -10,6 +10,7 @@ Copyright (c), Firelight Technologies Pty, Ltd 2012-2023.
 #include <Windows.h>
 #include <Objbase.h>
 #include <vector>
+#include "pch.h"
 
 static HWND gWindow = nullptr;
 static int gScreenWidth = 0;
@@ -57,6 +58,11 @@ static unsigned int translateButton(unsigned int button)
         case '2':       return (1 << BTN_ACTION2);
         case '3':       return (1 << BTN_ACTION3);
         case '4':       return (1 << BTN_ACTION4);
+        case 'l':       return (1 << BTN_LOOP);
+        case 'p':       return (1 << BTN_PAUSE);
+        case 's':       return (1 << BTN_STOP);
+        case 'm':       return (1 << BTN_PAN_UP);
+        case 'n':       return (1 << BTN_PAN_DOWN);
         case VK_LEFT:   return (1 << BTN_LEFT);
         case VK_RIGHT:  return (1 << BTN_RIGHT);
         case VK_UP:     return (1 << BTN_UP);
@@ -130,6 +136,11 @@ const char *Common_BtnStr(Common_Button btn)
         case BTN_ACTION2:   return "2";
         case BTN_ACTION3:   return "3";
         case BTN_ACTION4:   return "4";
+        case BTN_LOOP:      return "l";
+        case BTN_PAUSE:     return "p";
+        case BTN_STOP:      return "s";
+        case BTN_PAN_UP:    return "m";
+        case BTN_PAN_DOWN:  return "n";
         case BTN_LEFT:      return "Left";
         case BTN_RIGHT:     return "Right";
         case BTN_UP:        return "Up";
