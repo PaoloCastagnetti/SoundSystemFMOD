@@ -13,7 +13,7 @@ extern "C" {
 typedef struct FMOD_OS_FILE            FMOD_OS_FILE;
 typedef struct FMOD_OS_CRITICALSECTION FMOD_OS_CRITICALSECTION;
 
-FMOD_RESULT F_API FMOD_OS_Time_GetUs(unsigned int* us);
+FMOD_RESULT F_API FMOD_OS_Time_GetUs(unsigned int *us);
 FMOD_RESULT F_API FMOD_OS_Debug_Output(const char *format, ...);
 FMOD_RESULT F_API FMOD_OS_File_Open(const char *name, int mode, unsigned int *filesize, FMOD_OS_FILE **handle);
 FMOD_RESULT F_API FMOD_OS_File_Close(FMOD_OS_FILE *handle);

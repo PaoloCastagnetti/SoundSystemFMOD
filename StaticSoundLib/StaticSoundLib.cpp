@@ -66,3 +66,7 @@ bool Sound::playSound(FMOD::Sound *sound) {
     
     return true;
 }
+
+int FMOD_Main() {
+    return 1;
+}
