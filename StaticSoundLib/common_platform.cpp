@@ -54,22 +54,24 @@ static unsigned int translateButton(unsigned int button)
 {
     switch (button)
     {
-        case '1':       return (1 << BTN_ACTION1);
-        case '2':       return (1 << BTN_ACTION2);
-        case '3':       return (1 << BTN_ACTION3);
-        case '4':       return (1 << BTN_ACTION4);
-        case 'l':       return (1 << BTN_LOOP);
-        case 'p':       return (1 << BTN_PAUSE);
-        case 's':       return (1 << BTN_STOP);
-        case 'm':       return (1 << BTN_PAN_UP);
-        case 'n':       return (1 << BTN_PAN_DOWN);
-        case VK_LEFT:   return (1 << BTN_LEFT);
-        case VK_RIGHT:  return (1 << BTN_RIGHT);
-        case VK_UP:     return (1 << BTN_UP);
-        case VK_DOWN:   return (1 << BTN_DOWN);
-        case VK_SPACE:  return (1 << BTN_MORE);
-        case VK_ESCAPE: return (1 << BTN_QUIT);
-        default:        return 0;
+        case '1':           return (1 << BTN_ACTION1);
+        case '2':           return (1 << BTN_ACTION2);
+        case '3':           return (1 << BTN_ACTION3);
+        case '4':           return (1 << BTN_ACTION4);
+        case 'L':           return (1 << BTN_LOOP);
+        case 'P':           return (1 << BTN_PAUSE);
+        case 'S':           return (1 << BTN_STOP);
+        case 'M':           return (1 << BTN_PAN_UP);
+        case 'N':           return (1 << BTN_PAN_DOWN);
+        case VK_OEM_PLUS:   return (1 << BTN_PLUS);
+        case VK_OEM_MINUS:  return (1 << BTN_MINUS);
+        case VK_LEFT:       return (1 << BTN_LEFT);
+        case VK_RIGHT:      return (1 << BTN_RIGHT);
+        case VK_UP:         return (1 << BTN_UP);
+        case VK_DOWN:       return (1 << BTN_DOWN);
+        case VK_SPACE:      return (1 << BTN_MORE);
+        case VK_ESCAPE:     return (1 << BTN_QUIT);
+        default:            return 0;
     }
 }
 
@@ -141,6 +143,8 @@ const char *Common_BtnStr(Common_Button btn)
         case BTN_STOP:      return "s";
         case BTN_PAN_UP:    return "m";
         case BTN_PAN_DOWN:  return "n";
+        case BTN_PLUS:      return "+";
+        case BTN_MINUS:     return "-";
         case BTN_LEFT:      return "Left";
         case BTN_RIGHT:     return "Right";
         case BTN_UP:        return "Up";

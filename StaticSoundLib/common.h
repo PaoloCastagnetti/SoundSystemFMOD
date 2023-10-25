@@ -47,7 +47,9 @@ enum Common_Button
     BTN_UP,
     BTN_DOWN,
     BTN_MORE,
-    BTN_QUIT
+    BTN_QUIT,
+    BTN_PLUS,
+    BTN_MINUS
 };
 
 typedef struct

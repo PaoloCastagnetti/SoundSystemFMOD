@@ -1,8 +1,11 @@
 #include "StaticSoundLib.h"
 #include <iostream>
+#include <algorithm>
 
-int FMOD_Main() {
+#define VOLUME_CHANGE_VALUE 0.1
 
+
+int FMOD_Main() {   
 	//Sound system creation
 	Sound *System = new Sound();
 
@@ -15,6 +18,7 @@ int FMOD_Main() {
 
 		if (Common_BtnPress(BTN_ACTION1)) {
             Common_Draw("Banana");
+            System->playSound(System->s1);
             //to do
 		}
 		if (Common_BtnPress(BTN_ACTION2)) {
@@ -25,6 +29,25 @@ int FMOD_Main() {
             Common_Draw("Banana");
 			//to do
 		}
+        if (Common_BtnPress(BTN_PLUS)) {
+            Common_Draw("Banana plus");
+            
+            float currentVolume;
+            // Get current volume of the active channel (there should be just one channel)
+            System->channel->getVolume(&currentVolume);
+            // Set the volume to the value incremented by VOLUME_CHANGE_VALUE clamped between 0 and 1
+            System->channel->setVolume(Common_Clamp(0, (currentVolume + VOLUME_CHANGE_VALUE), 1));
+        }
+        if (Common_BtnPress(BTN_MINUS)) {
+            Common_Draw("Banana minus");
+            
+            float currentVolume;
+            // Get current volume of the active channel (there should be just one channel)
+            System->channel->getVolume(&currentVolume);
+            // Set the volume to the value decremented by VOLUME_CHANGE_VALUE clamped between 0 and 1
+            System->channel->setVolume(Common_Clamp(0, (currentVolume - VOLUME_CHANGE_VALUE), 1));
+        }
+        
 
 		if (!System->update()) return 0;
         
@@ -83,6 +106,8 @@ int FMOD_Main() {
             Common_Draw("%s) to pause the sound", Common_BtnStr(BTN_PAUSE));
             Common_Draw("%s) to put the pan up", Common_BtnStr(BTN_PAN_UP));
             Common_Draw("%s) to put the pan down", Common_BtnStr(BTN_PAN_DOWN));
+            Common_Draw("%s) to increse the volume", Common_BtnStr(BTN_PLUS));
+            Common_Draw("%s) to decrese the volume", Common_BtnStr(BTN_MINUS));
             Common_Draw("%s) to quit", Common_BtnStr(BTN_QUIT));
             Common_Draw("");
             Common_Draw("Time %02d:%02d:%02d/%02d:%02d:%02d : %s", ms / 1000 / 60, ms / 1000 % 60, ms / 10 % 100, lenms / 1000 / 60, lenms / 1000 % 60, lenms / 10 % 100, paused ? "Paused " : playing ? "Playing" : "Stopped");
