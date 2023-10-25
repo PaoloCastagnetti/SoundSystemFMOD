@@ -3,13 +3,8 @@
 
 int FMOD_Main() {
 
-    std::cout << "Banana" << std::endl;
-
 	//Sound system creation
 	Sound *System = new Sound();
-
-    // Initialize Common with the extradriverdata
-    Common_Init(&System->extradriverdata);
 
 	//System init
 	System->init();
@@ -19,12 +14,15 @@ int FMOD_Main() {
 		Common_Update();
 
 		if (Common_BtnPress(BTN_ACTION1)) {
-			//to do
+            Common_Draw("Banana");
+            //to do
 		}
 		if (Common_BtnPress(BTN_ACTION2)) {
+            Common_Draw("Banana");
 			//to do
 		}
 		if (Common_BtnPress(BTN_ACTION3)) {
+            Common_Draw("Banana");
 			//to do
 		}
 

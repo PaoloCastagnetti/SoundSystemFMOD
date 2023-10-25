@@ -10,9 +10,13 @@ Sound::Sound() {
     this->s2 = nullptr;
     this->s3 = nullptr;
     this->system = nullptr;
+    this->result = FMOD_OK;
 }
 
 bool Sound::init() {
+
+    // Initialize Common with the extradriverdata
+    Common_Init(&extradriverdata);
 
     //Create a System object and initialize
     this->result = FMOD::System_Create(&system);
