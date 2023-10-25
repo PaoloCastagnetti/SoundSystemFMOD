@@ -1,6 +1,10 @@
 #include "StaticSoundLib.h"
+#include <iostream>
 
 int main(int argc, char argv[]) {
+
+    std::cout << "Banana" << std::endl;
+
 	//Sound system creation
 	Sound *System = new Sound();
 

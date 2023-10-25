@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "framework.h"
 #include "StaticSoundLib.h"
+#include <iostream>
 
 //Library functions implementations
 
@@ -26,6 +27,10 @@ bool Sound::init() {
 
     this->result = system->createSound(Common_MediaPath("swish.wav"), FMOD_DEFAULT, 0, &s3);
     ERRCHECK(this->result);
+
+    Sound::s1 = nullptr;
+    Sound::s2 = nullptr;
+    Sound::s3 = nullptr;
 
     // Return true to indicate successful initialization
     return true;
@@ -68,5 +73,6 @@ bool Sound::playSound(FMOD::Sound *sound) {
 }
 
 int FMOD_Main() {
+    std::cout << "Banana" << std::endl;
     return 1;
 }
