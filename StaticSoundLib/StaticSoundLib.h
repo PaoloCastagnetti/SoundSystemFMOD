@@ -5,21 +5,25 @@
 
 class Sound {
 public:
+	/**
+	* @brief Default constructor, initialize the parameters
+	*/
+	Sound();
 
 	/**
-	 * Initializes the sound system.
+	 * @brief Initializes the sound system.
 	 *
 	 * @return Boolean value indicating the success of the initialization.
 	 */
 	bool init();
 	/**
-	 * Releases the resources used by the Sound system.
+	 * @brief Releases the resources used by the Sound system.
 	 *
 	 * @return Boolean value indicating the success of the release operation.
 	 */
 	bool release();
 	/**
-	 * Updates the Sound system.
+	 * @brief Updates the Sound system.
 	 *
 	 * @return Boolean value indicating the success of the update operation.
 	 */
@@ -30,9 +34,6 @@ public:
 	FMOD::System* system;
 	FMOD_RESULT result;
 	FMOD::Channel* channel = 0;
-
-private:
-
 	FMOD::Sound* s1;
 	FMOD::Sound* s2;
 	FMOD::Sound* s3;

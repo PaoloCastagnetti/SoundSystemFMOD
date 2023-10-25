@@ -112,7 +112,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)FMOD\api\core\inc;$(SolutionDir)StaticSoundLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)FMOD\api\core\lib\$(PlatformShortName);$(SolutionDir)StaticSoundLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>fmod$(Suffix)_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>

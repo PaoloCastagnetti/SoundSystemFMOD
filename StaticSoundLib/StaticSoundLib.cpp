@@ -5,10 +5,14 @@
 
 //Library functions implementations
 
-bool Sound::init() {
+Sound::Sound() {
+    this->s1 = nullptr;
+    this->s2 = nullptr;
+    this->s3 = nullptr;
+    this->system = nullptr;
+}
 
-    // Initialize Common with the extradriverdata
-	Common_Init(&extradriverdata);
+bool Sound::init() {
 
     //Create a System object and initialize
     this->result = FMOD::System_Create(&system);
@@ -27,10 +31,6 @@ bool Sound::init() {
 
     this->result = system->createSound(Common_MediaPath("swish.wav"), FMOD_DEFAULT, 0, &s3);
     ERRCHECK(this->result);
-
-    Sound::s1 = nullptr;
-    Sound::s2 = nullptr;
-    Sound::s3 = nullptr;
 
     // Return true to indicate successful initialization
     return true;
@@ -70,9 +70,4 @@ bool Sound::playSound(FMOD::Sound *sound) {
     ERRCHECK(result);
     
     return true;
-}
-
-int FMOD_Main() {
-    std::cout << "Banana" << std::endl;
-    return 1;
 }

@@ -1,12 +1,15 @@
 #include "StaticSoundLib.h"
 #include <iostream>
 
-int main(int argc, char argv[]) {
+int FMOD_Main() {
 
     std::cout << "Banana" << std::endl;
 
 	//Sound system creation
 	Sound *System = new Sound();
+
+    // Initialize Common with the extradriverdata
+    Common_Init(&System->extradriverdata);
 
 	//System init
 	System->init();
