@@ -76,19 +76,31 @@ bool Sound::playSound(FMOD::Sound *sound) {
 }
 
 bool Sound::setLoopOn() {
-    this->result = channel->setMode(FMOD_LOOP_NORMAL);
-    ERRCHECK(this->result);
+    int channelsplaying = 0;
+    system->getChannelsPlaying(&channelsplaying, NULL);
+    if (channelsplaying != 0) {
+        this->result = channel->setMode(FMOD_LOOP_NORMAL);
+        ERRCHECK(this->result);
+    }
     return true;
 }
 
 bool Sound::setLoopOff() {
-    this->result = channel->setMode(FMOD_LOOP_OFF);
-    ERRCHECK(this->result);
+    int channelsplaying = 0;
+    system->getChannelsPlaying(&channelsplaying, NULL);
+    if (channelsplaying != 0) {
+        this->result = channel->setMode(FMOD_LOOP_OFF);
+        ERRCHECK(this->result);
+    }
     return true;
 }
 
 bool Sound::stop() {
-    this->result = channel->stop();
-    ERRCHECK(this->result);
+    int channelsplaying = 0;
+    system->getChannelsPlaying(&channelsplaying, NULL);
+    if (channelsplaying != 0) {
+        this->result = channel->stop();
+        ERRCHECK(this->result);
+    }
     return true;
 }
