@@ -72,14 +72,7 @@ bool Sound::playSound(FMOD::Sound *sound) {
     this->result= system->playSound(sound, 0, false, &channel);
     ERRCHECK(this->result);
 
-    int channelPlaying;
-    system->getChannelsPlaying(&channelPlaying);
-    if (!channelPlaying)
-    {
-        return true;
-    }
-    // Set the volume to the value incremented by VOLUME_CHANGE_VALUE clamped between 0 and 1
-    channel->setVolume(Common_Clamp(0, volume, 1));
+    loadSoundInfo();
 
     return true;
 }
@@ -118,18 +111,16 @@ bool Sound::changeVolume(float value) {
     
     int channelPlaying;
     system->getChannelsPlaying(&channelPlaying);
+    volume = Common_Clamp(0, (volume + value), 1);
+    float nearest = roundf(volume * 10) / 10;
+    volume = nearest;
     if (!channelPlaying)
     {
-        volume = Common_Clamp(0, (volume + value), 1);
         return true;
     }
-    float currentVolume;
-    // Get current volume of the active channel (there should be just one channel)
-    channel->getVolume(&currentVolume);
-    // Set the volume to the value incremented by VOLUME_CHANGE_VALUE clamped between 0 and 1
-    this->result = channel->setVolume(Common_Clamp(0, (currentVolume + value), 1));
-    channel->getVolume(&currentVolume);
-    volume = currentVolume;
+    
+    // Set the volume to the incremented value
+    this->result = channel->setVolume(volume);
     ERRCHECK(this->result);
     return true;
 }
@@ -148,4 +139,40 @@ bool Sound::setPause() {
 		ERRCHECK(this->result);
 	}
 	return true;
+}
+
+bool Sound::changePan(float value) {
+    int channelPlaying;
+    system->getChannelsPlaying(&channelPlaying);
+
+    // Update the pan by adding the value and clamping it between -1 and 1
+    pan = Common_Clamp(-1, (pan + value), 1);
+    float nearest = roundf(pan * 10) / 10;
+    pan = nearest;
+    if (!channelPlaying)
+    {
+        return true;
+    }
+    // Set the pan of the channel to the pan calculated before
+    this->result = channel->setPan(pan);
+    ERRCHECK(this->result);
+    return true;
+}
+
+float Sound::getPan() {
+    return pan;
+}
+
+void Sound::loadSoundInfo() {
+    int channelPlaying;
+    system->getChannelsPlaying(&channelPlaying);
+    if (!channelPlaying)
+    {
+        return;
+    }
+    // Set the volume to the value saved
+    channel->setVolume(Common_Clamp(0, volume, 1));
+
+    // Set the pan to the value saved
+    channel->setPan(pan);
 }

@@ -1,0 +1,2 @@
+C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\examples\vs2019\_builds\play_sound\Debug\x64\play_soundL.exe.lastcodeanalysissucceeded
+C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\core\examples\vs2019\_builds\play_sound\Debug\x64\Intermediate\NativeCodeAnalysis.read.1.tlog

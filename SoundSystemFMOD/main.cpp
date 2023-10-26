@@ -4,6 +4,7 @@
 #include <string>
 
 #define VOLUME_CHANGE_VALUE 0.1
+#define PAN_CHANGE_VALUE 0.1
 
 
 int FMOD_Main() {   
@@ -47,7 +48,18 @@ int FMOD_Main() {
             if (!System->changeVolume(-VOLUME_CHANGE_VALUE)) return 0;
         }
 
-        // Button s
+        // Button m
+        if (Common_BtnPress(BTN_PAN_UP)) {
+            if (!System->changePan(PAN_CHANGE_VALUE)) return 0;
+        }
+
+        // Button n
+        if (Common_BtnPress(BTN_PAN_DOWN)) {
+            //Common_Draw("Banana minus");
+            if (!System->changePan(-PAN_CHANGE_VALUE)) return 0;
+        }
+
+        // Button volumeString
         if (Common_BtnPress(BTN_STOP)) {
             Common_Draw("Banana stop");
             if (!System->stop()) return 0;
@@ -127,25 +139,43 @@ int FMOD_Main() {
             Common_Draw("%s) to remove the loop", Common_BtnStr(BTN_LOOP_OFF));
             Common_Draw("%s) to stop the sound", Common_BtnStr(BTN_STOP));
             Common_Draw("%s) to pause the sound", Common_BtnStr(BTN_PAUSE));
-            Common_Draw("%s) to put the pan up", Common_BtnStr(BTN_PAN_UP));
-            Common_Draw("%s) to put the pan down", Common_BtnStr(BTN_PAN_DOWN));
+            Common_Draw("%s) to put the pan right", Common_BtnStr(BTN_PAN_UP));
+            Common_Draw("%s) to put the pan left", Common_BtnStr(BTN_PAN_DOWN));
             Common_Draw("%s) to increse the volume", Common_BtnStr(BTN_PLUS));
             Common_Draw("%s) to decrese the volume", Common_BtnStr(BTN_MINUS));
             Common_Draw("%s) to quit", Common_BtnStr(BTN_QUIT));
             Common_Draw("");
-            std::string s = "";
+            std::string volumeString = "";
             for (float i = 0; i < 1; i+= 0.1)
             {
                 if (i < System->getVolume())
                 {
-                    s += "X";
+                    volumeString += "X";
                 }
                 else
                 {
-                    s += ".";
+                    volumeString += ".";
                 }
             }
-            Common_Draw("Volume: [%s]", s.c_str());
+            Common_Draw("Volume: [%s]", volumeString.c_str());
+            Common_Draw("");
+            std::string panString = "";
+            for (float i = -1; i < 1.1; i += 0.1)
+            {
+                float nearest = roundf(i * 10) / 10;
+                if (nearest == System->getPan())
+                {
+                    panString += "O";
+                }
+                else if (nearest == 0)
+                {
+                    panString += "|";
+                }
+                else {
+                    panString += ".";
+                }
+            }
+            Common_Draw("Current Pan: [%s]", panString.c_str());
             
             Common_Draw("Time %02d:%02d:%02d/%02d:%02d:%02d : %s", ms / 1000 / 60, ms / 1000 % 60, ms / 10 % 100, lenms / 1000 / 60, lenms / 1000 % 60, lenms / 10 % 100, paused ? "Paused " : playing ? "Playing" : "Stopped");
             Common_Draw("Channels Playing %d", channelsplaying);

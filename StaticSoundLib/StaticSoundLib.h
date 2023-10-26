@@ -77,11 +77,33 @@ public:
 	float getVolume();
 
 	/**
+	* @brief Returns the pan
+	*
+	* @return Floating value indicating the pan.
+	*/
+	float getPan();
+
+	/**
 	* @brief Pause or unpause the sound
 	* 
-	* @param Boolean value indicating whether to pause or unpause the sound
+	* @return Boolean value indicating whether to pause or unpause the sound
 	*/
 	bool setPause();
+
+	/**
+	* @brief Changes the pan by the passed amount
+	* 
+	* @param The value to add to the pan
+	* 
+	* @return Boolean value indicating the success of the change pan operation.
+	*/
+	bool changePan(float value);
+
+	/**
+	* @brief Load the volume and the pan into the channel that is currently playing. 
+	* This function is called just after the play sound to correctly play the sound with the volume and pan loaded
+	*/
+	void loadSoundInfo();
 
 	FMOD::System* system;
 	FMOD_RESULT result;
@@ -93,5 +115,6 @@ public:
 
 private:
 	float volume = 0.5f;
+	float pan = 0.0f;
 
 };
