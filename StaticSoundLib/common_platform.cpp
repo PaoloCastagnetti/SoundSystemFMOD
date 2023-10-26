@@ -58,7 +58,8 @@ static unsigned int translateButton(unsigned int button)
         case '2':           return (1 << BTN_ACTION2);
         case '3':           return (1 << BTN_ACTION3);
         case '4':           return (1 << BTN_ACTION4);
-        case 'L':           return (1 << BTN_LOOP);
+        case 'L':           return (1 << BTN_LOOP_ON);
+        case 'K':           return (1 << BTN_LOOP_OFF);
         case 'P':           return (1 << BTN_PAUSE);
         case 'S':           return (1 << BTN_STOP);
         case 'M':           return (1 << BTN_PAN_UP);
@@ -138,7 +139,8 @@ const char *Common_BtnStr(Common_Button btn)
         case BTN_ACTION2:   return "2";
         case BTN_ACTION3:   return "3";
         case BTN_ACTION4:   return "4";
-        case BTN_LOOP:      return "l";
+        case BTN_LOOP_ON:      return "l";
+        case BTN_LOOP_OFF:      return "k";
         case BTN_PAUSE:     return "p";
         case BTN_STOP:      return "s";
         case BTN_PAN_UP:    return "m";

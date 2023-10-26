@@ -27,13 +27,13 @@ bool Sound::init() {
     ERRCHECK(this->result);
 
     // Load the sound files for 'drumloop.wav', 'jaguar.wav', and 'swish.wav'
-    this->result = system->createSound(Common_MediaPath("drumloop.wav"), FMOD_DEFAULT, 0, &s1);
+    this->result = system->createSound(Common_MediaPath("drumloop.wav"), FMOD_LOOP_OFF, 0, &s1);
     ERRCHECK(this->result);
 
-    this->result = system->createSound(Common_MediaPath("jaguar.wav"), FMOD_DEFAULT, 0, &s2);
+    this->result = system->createSound(Common_MediaPath("jaguar.wav"), FMOD_LOOP_OFF, 0, &s2);
     ERRCHECK(this->result);
 
-    this->result = system->createSound(Common_MediaPath("swish.wav"), FMOD_DEFAULT, 0, &s3);
+    this->result = system->createSound(Common_MediaPath("swish.wav"), FMOD_LOOP_OFF, 0, &s3);
     ERRCHECK(this->result);
 
     // Return true to indicate successful initialization
@@ -73,5 +73,20 @@ bool Sound::playSound(FMOD::Sound *sound) {
     this->result= system->playSound(sound, 0, false, &channel);
     ERRCHECK(result);
     
+    return true;
+}
+
+bool Sound::setLoopOn() {
+    channel->setMode(FMOD_LOOP_NORMAL);
+    return true;
+}
+
+bool Sound::setLoopOff() {
+    channel->setMode(FMOD_LOOP_OFF);
+    return true;
+}
+
+bool Sound::stop() {
+    channel->stop();
     return true;
 }

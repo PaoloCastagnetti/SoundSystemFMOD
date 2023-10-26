@@ -31,6 +31,12 @@ public:
 
 	bool playSound(FMOD::Sound *sound);
 
+	bool setLoopOn();
+
+	bool setLoopOff();
+
+	bool stop();
+
 	FMOD::System* system;
 	FMOD_RESULT result;
 	FMOD::Channel* channel = 0;
