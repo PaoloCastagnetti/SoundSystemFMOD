@@ -60,6 +60,15 @@ public:
 	 */
 	bool stop();
 
+	/**
+	* @brief Changes the volume by the passed amount.
+	* 
+	* @param The value to add to the volume
+	* 
+	* @return Boolean value indicating the success of the change volume operation.
+	*/
+	bool changeVolume(float value);
+
 	FMOD::System* system;
 	FMOD_RESULT result;
 	FMOD::Channel* channel = 0;
@@ -67,4 +76,8 @@ public:
 	FMOD::Sound* s2;
 	FMOD::Sound* s3;
 	void* extradriverdata = 0;
+
+private:
+	float volume = 0.5f;
+
 };

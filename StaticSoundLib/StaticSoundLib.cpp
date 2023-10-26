@@ -71,7 +71,16 @@ bool Sound::update() {
 bool Sound::playSound(FMOD::Sound *sound) {
     this->result= system->playSound(sound, 0, false, &channel);
     ERRCHECK(this->result);
-    
+
+    int channelPlaying;
+    system->getChannelsPlaying(&channelPlaying);
+    if (!channelPlaying)
+    {
+        return true;
+    }
+    // Set the volume to the value incremented by VOLUME_CHANGE_VALUE clamped between 0 and 1
+    channel->setVolume(Common_Clamp(0, volume, 1));
+
     return true;
 }
 
@@ -89,6 +98,25 @@ bool Sound::setLoopOff() {
 
 bool Sound::stop() {
     this->result = channel->stop();
+    ERRCHECK(this->result);
+    return true;
+}
+
+bool Sound::changeVolume(float value) {
+    
+    int channelPlaying;
+    system->getChannelsPlaying(&channelPlaying);
+    if (!channelPlaying)
+    {
+        return true;
+    }
+    float currentVolume;
+    // Get current volume of the active channel (there should be just one channel)
+    channel->getVolume(&currentVolume);
+    // Set the volume to the value incremented by VOLUME_CHANGE_VALUE clamped between 0 and 1
+    this->result = channel->setVolume(Common_Clamp(0, (currentVolume + value), 1));
+    channel->getVolume(&currentVolume);
+    volume = currentVolume;
     ERRCHECK(this->result);
     return true;
 }

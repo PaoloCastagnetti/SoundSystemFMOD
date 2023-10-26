@@ -36,24 +36,14 @@ int FMOD_Main() {
 
         // Button +
         if (Common_BtnPress(BTN_PLUS)) {
-            Common_Draw("Banana plus");
-            
-            float currentVolume;
-            // Get current volume of the active channel (there should be just one channel)
-            System->channel->getVolume(&currentVolume);
-            // Set the volume to the value incremented by VOLUME_CHANGE_VALUE clamped between 0 and 1
-            System->channel->setVolume(Common_Clamp(0, (currentVolume + VOLUME_CHANGE_VALUE), 1));
+            //Common_Draw("Banana plus");
+            if (!System->changeVolume(VOLUME_CHANGE_VALUE)) return 0;
         }
 
         // Button -
         if (Common_BtnPress(BTN_MINUS)) {
-            Common_Draw("Banana minus");
-            
-            float currentVolume;
-            // Get current volume of the active channel (there should be just one channel)
-            System->channel->getVolume(&currentVolume);
-            // Set the volume to the value decremented by VOLUME_CHANGE_VALUE clamped between 0 and 1
-            System->channel->setVolume(Common_Clamp(0, (currentVolume - VOLUME_CHANGE_VALUE), 1));
+            //Common_Draw("Banana minus");
+            if (!System->changeVolume(-VOLUME_CHANGE_VALUE)) return 0;
         }
 
         // Button s
