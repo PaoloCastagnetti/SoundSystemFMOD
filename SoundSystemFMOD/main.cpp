@@ -1,6 +1,7 @@
 #include "StaticSoundLib.h"
 #include <iostream>
 #include <algorithm>
+#include <string>
 
 #define VOLUME_CHANGE_VALUE 0.1
 
@@ -126,6 +127,20 @@ int FMOD_Main() {
             Common_Draw("%s) to decrese the volume", Common_BtnStr(BTN_MINUS));
             Common_Draw("%s) to quit", Common_BtnStr(BTN_QUIT));
             Common_Draw("");
+            std::string s = "";
+            for (float i = 0; i < 1; i+= 0.1)
+            {
+                if (i < System->getVolume())
+                {
+                    s += "X";
+                }
+                else
+                {
+                    s += ".";
+                }
+            }
+            Common_Draw("Volume: [%s]", s.c_str());
+            
             Common_Draw("Time %02d:%02d:%02d/%02d:%02d:%02d : %s", ms / 1000 / 60, ms / 1000 % 60, ms / 10 % 100, lenms / 1000 / 60, lenms / 1000 % 60, lenms / 10 % 100, paused ? "Paused " : playing ? "Playing" : "Stopped");
             Common_Draw("Channels Playing %d", channelsplaying);
         }

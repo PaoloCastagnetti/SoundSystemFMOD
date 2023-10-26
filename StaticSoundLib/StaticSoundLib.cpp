@@ -120,6 +120,7 @@ bool Sound::changeVolume(float value) {
     system->getChannelsPlaying(&channelPlaying);
     if (!channelPlaying)
     {
+        volume = Common_Clamp(0, (volume + value), 1);
         return true;
     }
     float currentVolume;
@@ -131,4 +132,8 @@ bool Sound::changeVolume(float value) {
     volume = currentVolume;
     ERRCHECK(this->result);
     return true;
+}
+
+float Sound::getVolume() {
+    return volume;
 }

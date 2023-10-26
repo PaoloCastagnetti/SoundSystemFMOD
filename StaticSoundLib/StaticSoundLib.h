@@ -69,6 +69,13 @@ public:
 	*/
 	bool changeVolume(float value);
 
+	/**
+	* @brief Returns the volume
+	*
+	* @return Floating value indicating the volume.
+	*/
+	float getVolume();
+
 	FMOD::System* system;
 	FMOD_RESULT result;
 	FMOD::Channel* channel = 0;
