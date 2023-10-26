@@ -53,6 +53,12 @@ int FMOD_Main() {
             if (!System->stop()) return 0;
         }
 
+        // Button p
+        if (Common_BtnPress(BTN_PAUSE)) {
+            Common_Draw("Banana pause");
+            if(!System->setPause()) return 0;
+        }
+
         //button l
         if (Common_BtnPress(BTN_LOOP_ON)) {
             Common_Draw("Banana loop on");
@@ -111,7 +117,7 @@ int FMOD_Main() {
 
             Common_Draw("==================================================");
             Common_Draw("Sound System FMOD - Sound programming Exam");
-            Common_Draw("Bettini Luca, Castagnetti Paolo, Guardini Matteo");
+            Common_Draw("Bertini Luca, Castagnetti Paolo, Guardini Matteo");
             Common_Draw("==================================================");
             Common_Draw("");
             Common_Draw("%s) to play a mono sound (drumloop)", Common_BtnStr(BTN_ACTION1));
