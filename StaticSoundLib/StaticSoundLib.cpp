@@ -137,3 +137,15 @@ bool Sound::changeVolume(float value) {
 float Sound::getVolume() {
     return volume;
 }
+
+bool Sound::setPause() {
+	int channelsplaying = 0;
+	system->getChannelsPlaying(&channelsplaying, NULL);
+    if (channelsplaying != 0) {
+		bool paused;
+		channel->getPaused(&paused);
+		this->result = channel->setPaused(!paused);
+		ERRCHECK(this->result);
+	}
+	return true;
+}

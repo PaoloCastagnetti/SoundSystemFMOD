@@ -76,6 +76,13 @@ public:
 	*/
 	float getVolume();
 
+	/**
+	* @brief Pause or unpause the sound
+	* 
+	* @param Boolean value indicating whether to pause or unpause the sound
+	*/
+	bool setPause();
+
 	FMOD::System* system;
 	FMOD_RESULT result;
 	FMOD::Channel* channel = 0;
