@@ -61,32 +61,34 @@ bool Sound::release() {
 
 bool Sound::update() {
     // Update the system
-    result = system->update();
-    ERRCHECK(result);
+    this->result = system->update();
+    ERRCHECK(this->result);
 
     // Return true to indicate successful update
     return true;
 }
 
 bool Sound::playSound(FMOD::Sound *sound) {
-    //Example code
     this->result= system->playSound(sound, 0, false, &channel);
-    ERRCHECK(result);
+    ERRCHECK(this->result);
     
     return true;
 }
 
 bool Sound::setLoopOn() {
-    channel->setMode(FMOD_LOOP_NORMAL);
+    this->result = channel->setMode(FMOD_LOOP_NORMAL);
+    ERRCHECK(this->result);
     return true;
 }
 
 bool Sound::setLoopOff() {
-    channel->setMode(FMOD_LOOP_OFF);
+    this->result = channel->setMode(FMOD_LOOP_OFF);
+    ERRCHECK(this->result);
     return true;
 }
 
 bool Sound::stop() {
-    channel->stop();
+    this->result = channel->stop();
+    ERRCHECK(this->result);
     return true;
 }
