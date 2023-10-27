@@ -299,7 +299,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, PSTR /*pCmdLine*/, int nCmdShow)
 {
-    const char CLASS_NAME[] = "FMOD Example Window Class";
+    const char CLASS_NAME[] = "FMOD";
 
     Common_Private_Argc = __argc;
     Common_Private_Argv = __argv;
@@ -314,7 +314,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, PSTR /*pCmd
     ATOM atom = RegisterClassA(&wc);
     assert(atom);
 
-    gWindow = CreateWindowA(CLASS_NAME, "FMOD Example", WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, nullptr, nullptr, hInstance, nullptr);
+    gWindow = CreateWindowA(CLASS_NAME, "FMOD", WS_CAPTION | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, nullptr, nullptr, hInstance, nullptr);
     assert(gWindow);
 
     ShowWindow(gWindow, nCmdShow);
