@@ -37,7 +37,7 @@ public:
 	 * @param sound Pointer to the FMOD Sound object to be played.
 	 * @return Boolean value indicating the success of playing the sound.
 	 */
-	bool playSound(FMOD::Sound *sound);
+	bool playSound(FMOD::Sound* sound);
 
 	/**
 	 * @brief Sets the looping mode for the currently playing sound to continuous looping.
@@ -62,9 +62,9 @@ public:
 
 	/**
 	* @brief Changes the volume by the passed amount.
-	* 
+	*
 	* @param The value to add to the volume
-	* 
+	*
 	* @return Boolean value indicating the success of the change volume operation.
 	*/
 	bool changeVolume(float value);
@@ -85,22 +85,22 @@ public:
 
 	/**
 	* @brief Pause or unpause the sound
-	* 
+	*
 	* @return Boolean value indicating whether to pause or unpause the sound
 	*/
 	bool setPause();
 
 	/**
 	* @brief Changes the pan by the passed amount
-	* 
+	*
 	* @param The value to add to the pan
-	* 
+	*
 	* @return Boolean value indicating the success of the change pan operation.
 	*/
 	bool changePan(float value);
 
 	/**
-	* @brief Load the volume and the pan into the channel that is currently playing. 
+	* @brief Load the volume and the pan into the channel that is currently playing.
 	* This function is called just after the play sound to correctly play the sound with the volume and pan loaded
 	*/
 	void loadSoundInfo();
@@ -108,6 +108,7 @@ public:
 	FMOD::System* system;
 	FMOD_RESULT result;
 	FMOD::Channel* channel = 0;
+	FMOD::ChannelGroup* channelGroup;
 	FMOD::Sound* s1;
 	FMOD::Sound* s2;
 	FMOD::Sound* s3;
