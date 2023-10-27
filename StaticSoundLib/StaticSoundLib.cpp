@@ -69,11 +69,14 @@ bool Sound::update() {
 }
 
 bool Sound::playSound(FMOD::Sound *sound) {
-    this->result= system->playSound(sound, 0, false, &channel);
-    ERRCHECK(this->result);
+    int channelsplaying = 0;
+    system->getChannelsPlaying(&channelsplaying, NULL);
 
-    loadSoundInfo();
-
+    if (channelsplaying == 0) {
+        this->result = system->playSound(sound, 0, false, &channel);
+        ERRCHECK(this->result);
+        loadSoundInfo();
+    }
     return true;
 }
 
