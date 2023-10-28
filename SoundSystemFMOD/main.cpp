@@ -149,6 +149,7 @@ int FMOD_Main() {
             Common_Draw("%s) To put the pan left", Common_BtnStr(BTN_PAN_DOWN));
             Common_Draw("%s) To increse the volume", Common_BtnStr(BTN_PLUS));
             Common_Draw("%s) To decrese the volume", Common_BtnStr(BTN_MINUS));
+            Common_Draw("%s) To change channel group", Common_BtnStr(BTN_CHANGE_CHANNEL_GROUP));
             Common_Draw("%s) To quit", Common_BtnStr(BTN_QUIT));
             Common_Draw("");
             std::string volumeString = "";
