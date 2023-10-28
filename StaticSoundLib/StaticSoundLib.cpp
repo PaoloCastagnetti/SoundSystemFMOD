@@ -121,8 +121,17 @@ bool Sound::setLoopOn() {
 	int channelsplaying = 0;
 	system->getChannelsPlaying(&channelsplaying, NULL);
 	if (channelsplaying != 0) {
-		this->result = channel->setMode(FMOD_LOOP_NORMAL);
-		ERRCHECK(this->result);
+		int numChannels;
+		channelGroup->getNumChannels(&numChannels);
+		for (int i = 0; i < numChannels; i++)
+		{
+			FMOD::Channel *tmpChannel;
+			channelGroup->getChannel(i, &tmpChannel);
+			this->result = tmpChannel->setMode(FMOD_LOOP_NORMAL);
+			ERRCHECK(this->result);
+		}
+
+		
 	}
 	return true;
 }
@@ -131,8 +140,15 @@ bool Sound::setLoopOff() {
 	int channelsplaying = 0;
 	system->getChannelsPlaying(&channelsplaying, NULL);
 	if (channelsplaying != 0) {
-		this->result = channel->setMode(FMOD_LOOP_OFF);
-		ERRCHECK(this->result);
+		int numChannels;
+		channelGroup->getNumChannels(&numChannels);
+		for (int i = 0; i < numChannels; i++)
+		{
+			FMOD::Channel* tmpChannel;
+			channelGroup->getChannel(i, &tmpChannel);
+			this->result = tmpChannel->setMode(FMOD_LOOP_OFF);
+			ERRCHECK(this->result);
+		}
 	}
 	return true;
 }
@@ -141,7 +157,7 @@ bool Sound::stop() {
 	int channelsplaying = 0;
 	system->getChannelsPlaying(&channelsplaying, NULL);
 	if (channelsplaying != 0) {
-		this->result = channel->stop();
+		this->result = channelGroup->stop();
 		ERRCHECK(this->result);
 	}
 	return true;
@@ -170,8 +186,8 @@ bool Sound::setPause() {
 	system->getChannelsPlaying(&channelsplaying, NULL);
 	if (channelsplaying != 0) {
 		bool paused;
-		channel->getPaused(&paused);
-		this->result = channel->setPaused(!paused);
+		channelGroup->getPaused(&paused);
+		this->result = channelGroup->setPaused(!paused);
 		ERRCHECK(this->result);
 	}
 	return true;
