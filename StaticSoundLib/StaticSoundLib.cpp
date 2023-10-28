@@ -37,12 +37,37 @@ bool Sound::init() {
 	ERRCHECK(this->result);
 
 	// Initialization of the main channel group
-	this->result = system->createChannelGroup("main", &channelGroup);
+	FMOD::ChannelGroup* tmpChannelGroup;
+	this->result = system->createChannelGroup("main", &tmpChannelGroup);
 	ERRCHECK(this->result);
 
-	// Set the channel group of the current channel to the one just created
-	this->result = channel->setChannelGroup(channelGroup);
+	// Set the volume to 0.5
+	tmpChannelGroup->setVolume(volume);
+
+	// Add it to the vector of channel group
+	channelGroupVector.push_back(tmpChannelGroup);
+
+	// Add the pan value to the vector
+	panValues.push_back(0);
+
+	// Initialization of the side channel group
+	this->result = system->createChannelGroup("side", &tmpChannelGroup);
 	ERRCHECK(this->result);
+
+	// Set the volume to 0.5
+	tmpChannelGroup->setVolume(volume);
+	
+	// Add it to the vector of channel group
+	channelGroupVector.push_back(tmpChannelGroup);
+	// Add the pan value to the vector
+	panValues.push_back(0);
+
+	// Set the current channel group to the main channel group
+	channelGroup = channelGroupVector[0];
+
+	// Set the channel group of the current channel to the one just created
+	//this->result = channel->setChannelGroup(channelGroup);
+	//ERRCHECK(this->result);
 
 	// Return true to indicate successful initialization
 	return true;
@@ -84,11 +109,11 @@ bool Sound::playSound(FMOD::Sound* sound) {
 	int channelsplaying = 0;
 	system->getChannelsPlaying(&channelsplaying, NULL);
 
-	if (channelsplaying == 0) {
-		this->result = system->playSound(sound, 0, false, &channel);
+	//if (channelsplaying == 0) {
+		this->result = system->playSound(sound, channelGroup, false, &channel);
 		ERRCHECK(this->result);
-		loadSoundInfo();
-	}
+		//loadSoundInfo();
+	//}
 	return true;
 }
 
@@ -129,14 +154,10 @@ bool Sound::changeVolume(float value) {
 	volume = Common_Clamp(0, (volume + value), 1);
 	float nearest = roundf(volume * 10) / 10;
 	volume = nearest;
-	if (!channelPlaying)
-	{
-		return true;
-	}
-
 	// Set the volume to the incremented value
-	this->result = channel->setVolume(volume);
+	this->result = channelGroup->setVolume(volume);
 	ERRCHECK(this->result);
+
 	return true;
 }
 
@@ -164,13 +185,11 @@ bool Sound::changePan(float value) {
 	pan = Common_Clamp(-1, (pan + value), 1);
 	float nearest = roundf(pan * 10) / 10;
 	pan = nearest;
-	if (!channelPlaying)
-	{
-		return true;
-	}
-	// Set the pan of the channel to the pan calculated before
-	this->result = channel->setPan(pan);
+	this->result = channelGroup->setPan(pan);
 	ERRCHECK(this->result);
+	// Set the pan of the channel to the pan calculated before
+	//this->result = channel->setPan(pan);
+	//ERRCHECK(this->result);
 	return true;
 }
 
@@ -186,8 +205,36 @@ void Sound::loadSoundInfo() {
 		return;
 	}
 	// Set the volume to the value saved
-	channel->setVolume(Common_Clamp(0, volume, 1));
+	channelGroup->setVolume(Common_Clamp(0, volume, 1));
 
 	// Set the pan to the value saved
-	channel->setPan(pan);
+	channelGroup->setPan(pan);
+}
+
+void Sound::changeChannelGroup() {
+
+	// Save the current pan value
+	panValues[channelGroupIndex] = pan;
+
+	// Check if the current channel group selected is the last one
+	if (channelGroupIndex == channelGroupVector.size() - 1)
+	{
+		// Set it to 0 to get the first
+		channelGroupIndex = 0;
+	}
+	else
+	{
+		// Increment it to get the next one
+		channelGroupIndex++;
+	}
+
+	// Change the current channel group
+	channelGroup = channelGroupVector[channelGroupIndex];
+
+	// Update the values volume
+	channelGroup->getVolume(&volume);
+
+	// Set the pan value
+	pan = panValues[channelGroupIndex];
+	channelGroup->setPan(pan);
 }

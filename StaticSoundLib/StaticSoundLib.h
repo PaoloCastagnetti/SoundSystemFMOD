@@ -2,6 +2,7 @@
 #include "fmod.hpp"
 #include "common.h"
 #include <list>
+#include <vector>
 
 class Sound {
 public:
@@ -105,10 +106,19 @@ public:
 	*/
 	void loadSoundInfo();
 
+	/**
+	* @brief Changes the channel group to the next one in the vector, if it's the last one goes, then goes back to the first one
+	*/
+	void changeChannelGroup();
+
+
 	FMOD::System* system;
 	FMOD_RESULT result;
 	FMOD::Channel* channel = 0;
 	FMOD::ChannelGroup* channelGroup;
+
+	std::vector<FMOD::ChannelGroup*> channelGroupVector;
+
 	FMOD::Sound* s1;
 	FMOD::Sound* s2;
 	FMOD::Sound* s3;
@@ -117,5 +127,9 @@ public:
 private:
 	float volume = 0.5f;
 	float pan = 0.0f;
+
+	int channelGroupIndex = 0;
+
+	std::vector<float> panValues;
 
 };

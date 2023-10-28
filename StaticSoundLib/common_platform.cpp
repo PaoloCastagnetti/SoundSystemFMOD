@@ -72,6 +72,7 @@ static unsigned int translateButton(unsigned int button)
         case VK_DOWN:       return (1 << BTN_DOWN);
         case VK_SPACE:      return (1 << BTN_MORE);
         case VK_ESCAPE:     return (1 << BTN_QUIT);
+        case 'G':           return (1 << BTN_CHANGE_CHANNEL_GROUP);
         default:            return 0;
     }
 }
@@ -135,25 +136,26 @@ const char *Common_BtnStr(Common_Button btn)
 {
     switch (btn)
     {
-        case BTN_ACTION1:   return "1";
-        case BTN_ACTION2:   return "2";
-        case BTN_ACTION3:   return "3";
-        case BTN_ACTION4:   return "4";
-        case BTN_LOOP_ON:      return "l";
-        case BTN_LOOP_OFF:      return "k";
-        case BTN_PAUSE:     return "p";
-        case BTN_STOP:      return "s";
-        case BTN_PAN_UP:    return "m";
-        case BTN_PAN_DOWN:  return "n";
-        case BTN_PLUS:      return "+";
-        case BTN_MINUS:     return "-";
-        case BTN_LEFT:      return "Left";
-        case BTN_RIGHT:     return "Right";
-        case BTN_UP:        return "Up";
-        case BTN_DOWN:      return "Down";
-        case BTN_MORE:      return "Space";
-        case BTN_QUIT:      return "Escape";
-        default:            return "Unknown";
+        case BTN_ACTION1:               return "1";
+        case BTN_ACTION2:               return "2";
+        case BTN_ACTION3:               return "3";
+        case BTN_ACTION4:               return "4";
+        case BTN_LOOP_ON:               return "l";
+        case BTN_LOOP_OFF:              return "k";
+        case BTN_PAUSE:                 return "p";
+        case BTN_STOP:                  return "s";
+        case BTN_PAN_UP:                return "m";
+        case BTN_PAN_DOWN:              return "n";
+        case BTN_PLUS:                  return "+";
+        case BTN_MINUS:                 return "-";
+        case BTN_LEFT:                  return "Left";
+        case BTN_RIGHT:                 return "Right";
+        case BTN_UP:                    return "Up";
+        case BTN_DOWN:                  return "Down";
+        case BTN_MORE:                  return "Space";
+        case BTN_QUIT:                  return "Escape";
+        case BTN_CHANGE_CHANNEL_GROUP:  return "g";
+        default:                        return "Unknown";
     }
 }
 

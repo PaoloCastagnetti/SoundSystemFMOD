@@ -61,26 +61,32 @@ int FMOD_Main() {
 
         // Button volumeString
         if (Common_BtnPress(BTN_STOP)) {
-            Common_Draw("Banana stop");
+            //Common_Draw("Banana stop");
             if (!System->stop()) return 0;
         }
 
         // Button p
         if (Common_BtnPress(BTN_PAUSE)) {
-            Common_Draw("Banana pause");
+            //Common_Draw("Banana pause");
             if(!System->setPause()) return 0;
         }
 
         //button l
         if (Common_BtnPress(BTN_LOOP_ON)) {
-            Common_Draw("Banana loop on");
+            //Common_Draw("Banana loop on");
             if(!System->setLoopOn()) return 0;
         }
 
         //button k
         if (Common_BtnPress(BTN_LOOP_OFF)) {
-            Common_Draw("Banana loop off");
+            //Common_Draw("Banana loop off");
             if (!System->setLoopOff()) return 0;
+        }
+
+        //button g
+        if (Common_BtnPress(BTN_CHANGE_CHANNEL_GROUP)) {
+            //Common_Draw("Banana change channel group");
+            System->changeChannelGroup();
         }
 
 		if (!System->update()) return 0;
@@ -179,6 +185,9 @@ int FMOD_Main() {
             
             Common_Draw("Time %02d:%02d:%02d/%02d:%02d:%02d : %s", ms / 1000 / 60, ms / 1000 % 60, ms / 10 % 100, lenms / 1000 / 60, lenms / 1000 % 60, lenms / 10 % 100, paused ? "Paused " : playing ? "Playing" : "Stopped");
             Common_Draw("Channels Playing %d", channelsplaying);
+            char* channelGroupName = new char;
+            System->channelGroup->getName(channelGroupName, 5);
+            Common_Draw("Current channel group name: %s", channelGroupName);
         }
         
 		Common_Sleep(50);

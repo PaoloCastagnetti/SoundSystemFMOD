@@ -50,7 +50,8 @@ enum Common_Button
     BTN_MORE,
     BTN_QUIT,
     BTN_PLUS,
-    BTN_MINUS
+    BTN_MINUS,
+    BTN_CHANGE_CHANNEL_GROUP
 };
 
 typedef struct
