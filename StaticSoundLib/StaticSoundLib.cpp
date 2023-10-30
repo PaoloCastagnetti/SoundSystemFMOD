@@ -39,6 +39,7 @@ bool Sound::init() {
 	this->result = system->createSound(Common_MediaPath("swish.wav"), FMOD_LOOP_OFF, 0, &s3);
 	ERRCHECK(this->result);
 
+	//use a stream
 	this->result = system->createStream(Common_MediaPath("YouShallNotPass.wav"), FMOD_LOOP_OFF, 0, &s4);
 	ERRCHECK(this->result);
 

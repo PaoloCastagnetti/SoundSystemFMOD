@@ -142,7 +142,7 @@ int FMOD_Main() {
             Common_Draw("%s) To play a mono sound (drumloop)", Common_BtnStr(BTN_ACTION1));
             Common_Draw("%s) To play a mono sound (jaguar)", Common_BtnStr(BTN_ACTION2));
             Common_Draw("%s) To play a stereo sound (swish)", Common_BtnStr(BTN_ACTION3));
-            Common_Draw("%s) To play a mono sound (You shall not pass)", Common_BtnStr(BTN_ACTION4));
+            Common_Draw("%s) To play a stream mono sound (You shall not pass)", Common_BtnStr(BTN_ACTION4));
             Common_Draw("%s) To play a mono sound (I am your father)", Common_BtnStr(BTN_ACTION5));
             Common_Draw("%s) To play a mono sound (Master Oogway)", Common_BtnStr(BTN_ACTION6));
             Common_Draw("%s) To put the sound in loop", Common_BtnStr(BTN_LOOP_ON));
