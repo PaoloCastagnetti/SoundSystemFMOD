@@ -122,6 +122,7 @@ public:
 	FMOD::Sound* s1;
 	FMOD::Sound* s2;
 	FMOD::Sound* s3;
+	FMOD::Sound* s4;
 	void* extradriverdata = 0;
 
 private:

@@ -36,6 +36,11 @@ int FMOD_Main() {
             if (!System->playSound(System->s3)) return 0;
 		}
 
+        if (Common_BtnPress(BTN_ACTION4)) {
+            //Common_Draw("Banana");
+            if (!System->playSound(System->s4)) return 0;
+        }
+
         // Button +
         if (Common_BtnPress(BTN_PLUS)) {
             //Common_Draw("Banana plus");
@@ -141,6 +146,7 @@ int FMOD_Main() {
             Common_Draw("%s) To play a mono sound (drumloop)", Common_BtnStr(BTN_ACTION1));
             Common_Draw("%s) To play a mono sound (jaguar)", Common_BtnStr(BTN_ACTION2));
             Common_Draw("%s) To play a stereo sound (swish)", Common_BtnStr(BTN_ACTION3));
+            Common_Draw("%s) To play a stereo sound (You shall not pass)", Common_BtnStr(BTN_ACTION4));
             Common_Draw("%s) To put the sound in loop", Common_BtnStr(BTN_LOOP_ON));
             Common_Draw("%s) To remove the loop", Common_BtnStr(BTN_LOOP_OFF));
             Common_Draw("%s) To stop the sound", Common_BtnStr(BTN_STOP));
