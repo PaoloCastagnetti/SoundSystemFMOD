@@ -20,31 +20,38 @@ int FMOD_Main() {
 
         // Button 1
 		if (Common_BtnPress(BTN_ACTION1)) {
-            //Common_Draw("Banana");
             if (!System->playSound(System->s1)) return 0;
 		}
 
         // Button 2
 		if (Common_BtnPress(BTN_ACTION2)) {
-            //Common_Draw("Banana");
             if (!System->playSound(System->s2)) return 0;
 		}
 
         // Button 3
 		if (Common_BtnPress(BTN_ACTION3)) {
-            //Common_Draw("Banana");
             if (!System->playSound(System->s3)) return 0;
 		}
 
+        if (Common_BtnPress(BTN_ACTION4)) {
+            if (!System->playSound(System->s4)) return 0;
+        }
+
+        if (Common_BtnPress(BTN_ACTION5)) {
+            if (!System->playSound(System->s5)) return 0;
+        }
+
+        if (Common_BtnPress(BTN_ACTION6)) {
+            if (!System->playSound(System->s6)) return 0;
+        }
+
         // Button +
         if (Common_BtnPress(BTN_PLUS)) {
-            //Common_Draw("Banana plus");
             if (!System->changeVolume(VOLUME_CHANGE_VALUE)) return 0;
         }
 
         // Button -
         if (Common_BtnPress(BTN_MINUS)) {
-            //Common_Draw("Banana minus");
             if (!System->changeVolume(-VOLUME_CHANGE_VALUE)) return 0;
         }
 
@@ -55,37 +62,31 @@ int FMOD_Main() {
 
         // Button n
         if (Common_BtnPress(BTN_PAN_DOWN)) {
-            //Common_Draw("Banana minus");
             if (!System->changePan(-PAN_CHANGE_VALUE)) return 0;
         }
 
         // Button volumeString
         if (Common_BtnPress(BTN_STOP)) {
-            //Common_Draw("Banana stop");
             if (!System->stop()) return 0;
         }
 
         // Button p
         if (Common_BtnPress(BTN_PAUSE)) {
-            //Common_Draw("Banana pause");
             if(!System->setPause()) return 0;
         }
 
         //button l
         if (Common_BtnPress(BTN_LOOP_ON)) {
-            //Common_Draw("Banana loop on");
             if(!System->setLoopOn()) return 0;
         }
 
         //button k
         if (Common_BtnPress(BTN_LOOP_OFF)) {
-            //Common_Draw("Banana loop off");
             if (!System->setLoopOff()) return 0;
         }
 
         //button g
         if (Common_BtnPress(BTN_CHANGE_CHANNEL_GROUP)) {
-            //Common_Draw("Banana change channel group");
             System->changeChannelGroup();
         }
 
@@ -141,6 +142,9 @@ int FMOD_Main() {
             Common_Draw("%s) To play a mono sound (drumloop)", Common_BtnStr(BTN_ACTION1));
             Common_Draw("%s) To play a mono sound (jaguar)", Common_BtnStr(BTN_ACTION2));
             Common_Draw("%s) To play a stereo sound (swish)", Common_BtnStr(BTN_ACTION3));
+            Common_Draw("%s) To play a stream mono sound (You shall not pass)", Common_BtnStr(BTN_ACTION4));
+            Common_Draw("%s) To play a mono sound (I am your father)", Common_BtnStr(BTN_ACTION5));
+            Common_Draw("%s) To play a mono sound (Master Oogway)", Common_BtnStr(BTN_ACTION6));
             Common_Draw("%s) To put the sound in loop", Common_BtnStr(BTN_LOOP_ON));
             Common_Draw("%s) To remove the loop", Common_BtnStr(BTN_LOOP_OFF));
             Common_Draw("%s) To stop the sound", Common_BtnStr(BTN_STOP));
