@@ -37,6 +37,8 @@ enum Common_Button
     BTN_ACTION2,
     BTN_ACTION3,
     BTN_ACTION4,
+    BTN_ACTION5,
+    BTN_ACTION6,
     BTN_LOOP_ON,
     BTN_LOOP_OFF,
     BTN_PAUSE,

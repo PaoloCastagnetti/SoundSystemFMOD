@@ -10,6 +10,8 @@ Sound::Sound() {
 	this->s2 = nullptr;
 	this->s3 = nullptr;
 	this->s4 = nullptr;
+	this->s5 = nullptr;
+	this->s6 = nullptr;
 	this->system = nullptr;
 	this->result = FMOD_OK;
 }
@@ -37,11 +39,15 @@ bool Sound::init() {
 	this->result = system->createSound(Common_MediaPath("swish.wav"), FMOD_LOOP_OFF, 0, &s3);
 	ERRCHECK(this->result);
 
-
-	this->result = system->createSound(Common_MediaPath("YouShallNotPass.wav"), FMOD_LOOP_OFF, 0, &s4);
+	this->result = system->createStream(Common_MediaPath("YouShallNotPass.wav"), FMOD_LOOP_OFF, 0, &s4);
 	ERRCHECK(this->result);
 
-	//YouShallNotPass.wav
+
+	this->result = system->createSound(Common_MediaPath("IAmYourFather.wav"), FMOD_LOOP_OFF, 0, &s5);
+	ERRCHECK(this->result);
+
+	this->result = system->createSound(Common_MediaPath("MasterOogway.wav"), FMOD_LOOP_OFF, 0, &s6);
+	ERRCHECK(this->result);
 
 	// Initialization of the main channel group
 	FMOD::ChannelGroup* tmpChannelGroup;
@@ -81,7 +87,7 @@ bool Sound::init() {
 }
 
 bool Sound::release() {
-	// Release the resources for s1, s2,s3,s4
+	// Release the resources for s1, s2,s3,s4, s5 and s6
 	this->result = s1->release();
 	ERRCHECK(this->result);
 	this->result = s2->release();
@@ -89,6 +95,10 @@ bool Sound::release() {
 	this->result = s3->release();
 	ERRCHECK(this->result);
 	this->result = s4->release();
+	ERRCHECK(this->result);
+	this->result = s5->release();
+	ERRCHECK(this->result);
+	this->result = s6->release();
 	ERRCHECK(this->result);
 
 	// Release the channel group
