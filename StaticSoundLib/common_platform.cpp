@@ -315,7 +315,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, PSTR /*pCmd
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
     wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-    wc.lpszClassName = CLASS_NAME;
+    wc.lpszClassName = CLASS_NAME;  
+
 
     ATOM atom = RegisterClassA(&wc);
     assert(atom);
