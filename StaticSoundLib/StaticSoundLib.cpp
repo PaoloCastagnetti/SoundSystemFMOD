@@ -30,7 +30,6 @@ bool Sound::init() {
 	this->result = system->createStream(Common_MediaPath("YouShallNotPass.wav"), FMOD_LOOP_OFF, 0, &s1);
 	ERRCHECK(this->result);
 
-
 	this->result = system->createSound(Common_MediaPath("IAmYourFather.wav"), FMOD_LOOP_OFF, 0, &s2);
 	ERRCHECK(this->result);
 

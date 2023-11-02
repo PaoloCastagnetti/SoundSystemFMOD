@@ -165,7 +165,8 @@ const char *Common_MediaPath(const char *fileName)
     if (!pathPrefix)
     {
         const char *emptyPrefix = "";
-        const char *mediaPrefix = "../media/";
+        const char* mediaPrefix = "../media/";
+        const char* mediaDebugPrefix = "../../media/";
         FILE *file = fopen(fileName, "r");
         if (file)
         {
@@ -174,8 +175,19 @@ const char *Common_MediaPath(const char *fileName)
         }
         else
         {
-            pathPrefix = mediaPrefix;
-        }
+            char result[100];
+            strcpy(result, mediaPrefix);
+            strcat(result, fileName);
+            //concatenate the prefix to the filename and see if it exists
+            FILE* file = fopen(result, "r");
+            if (file) {
+                fclose(file);
+                pathPrefix = mediaPrefix;
+            }
+            else{
+                pathPrefix = mediaDebugPrefix;
+            }
+		}
     }
 
     strcat(filePath, pathPrefix);
