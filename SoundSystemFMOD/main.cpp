@@ -133,7 +133,7 @@ int FMOD_Main() {
             Common_Draw("%s) To put the sound in loop", Common_BtnStr(BTN_LOOP_ON));
             Common_Draw("%s) To remove the loop", Common_BtnStr(BTN_LOOP_OFF));
             Common_Draw("%s) To stop the sound", Common_BtnStr(BTN_STOP));
-            Common_Draw("%s) To pause/resume the sound", Common_BtnStr(BTN_PAUSE));
+            Common_Draw("%s) To pause/resume the sounds in a channel group", Common_BtnStr(BTN_PAUSE));
             Common_Draw("%s) To put the pan right", Common_BtnStr(BTN_PAN_UP));
             Common_Draw("%s) To put the pan left", Common_BtnStr(BTN_PAN_DOWN));
             Common_Draw("%s) To increse the volume", Common_BtnStr(BTN_PLUS));
