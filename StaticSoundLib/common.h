@@ -17,7 +17,7 @@ Copyright (c), Firelight Technologies Pty, Ltd 2012-2023.
 #include <assert.h>
 
 #define NUM_COLUMNS 55
-#define NUM_ROWS 28
+#define NUM_ROWS 25
 
 #ifndef Common_Sin
     #define Common_Sin sin
@@ -36,9 +36,6 @@ enum Common_Button
     BTN_ACTION1,
     BTN_ACTION2,
     BTN_ACTION3,
-    BTN_ACTION4,
-    BTN_ACTION5,
-    BTN_ACTION6,
     BTN_LOOP_ON,
     BTN_LOOP_OFF,
     BTN_PAUSE,

@@ -9,9 +9,6 @@ Sound::Sound() {
 	this->s1 = nullptr;
 	this->s2 = nullptr;
 	this->s3 = nullptr;
-	this->s4 = nullptr;
-	this->s5 = nullptr;
-	this->s6 = nullptr;
 	this->system = nullptr;
 	this->result = FMOD_OK;
 }
@@ -29,25 +26,15 @@ bool Sound::init() {
 	this->result = system->init(32, FMOD_INIT_NORMAL, extradriverdata);
 	ERRCHECK(this->result);
 
-	// Load the sound files for 'drumloop.wav', 'jaguar.wav', and 'swish.wav'
-	this->result = system->createSound(Common_MediaPath("drumloop.wav"), FMOD_LOOP_OFF, 0, &s1);
-	ERRCHECK(this->result);
-
-	this->result = system->createSound(Common_MediaPath("jaguar.wav"), FMOD_LOOP_OFF, 0, &s2);
-	ERRCHECK(this->result);
-
-	this->result = system->createSound(Common_MediaPath("swish.wav"), FMOD_LOOP_OFF, 0, &s3);
-	ERRCHECK(this->result);
-
 	//use a stream
-	this->result = system->createStream(Common_MediaPath("YouShallNotPass.wav"), FMOD_LOOP_OFF, 0, &s4);
+	this->result = system->createStream(Common_MediaPath("YouShallNotPass.wav"), FMOD_LOOP_OFF, 0, &s1);
 	ERRCHECK(this->result);
 
 
-	this->result = system->createSound(Common_MediaPath("IAmYourFather.wav"), FMOD_LOOP_OFF, 0, &s5);
+	this->result = system->createSound(Common_MediaPath("IAmYourFather.wav"), FMOD_LOOP_OFF, 0, &s2);
 	ERRCHECK(this->result);
 
-	this->result = system->createSound(Common_MediaPath("MasterOogway.wav"), FMOD_LOOP_OFF, 0, &s6);
+	this->result = system->createSound(Common_MediaPath("MasterOogway.wav"), FMOD_LOOP_OFF, 0, &s3);
 	ERRCHECK(this->result);
 
 	// Initialization of the main channel group
@@ -94,12 +81,6 @@ bool Sound::release() {
 	this->result = s2->release();
 	ERRCHECK(this->result);
 	this->result = s3->release();
-	ERRCHECK(this->result);
-	this->result = s4->release();
-	ERRCHECK(this->result);
-	this->result = s5->release();
-	ERRCHECK(this->result);
-	this->result = s6->release();
 	ERRCHECK(this->result);
 
 	// Release the channel group
@@ -212,6 +193,7 @@ bool Sound::setPause() {
 	}
 	return true;
 }
+
 
 bool Sound::changePan(float value) {
 	int channelPlaying;
