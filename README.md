@@ -22,3 +22,6 @@ m/n) to make the pan shifting right/left of the selected channel.
 +/-) to increase/reduce the volume of the selected channel.  
 g) to change the selected channel.  
 Below all this option you can find a bar with the volume representation, the pan, the channel playing and the time informations.  
+
+## Program screenshot
+![Screenshot](media/Screen.png)
